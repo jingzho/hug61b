@@ -6,16 +6,16 @@ import java.util.ArrayList;
 public class NBody {
 
   // method 1: return radius of the universe
-  public static double readRadius(String fn) {
-    In in = new In(fn);
+  public static double readRadius(String filename) {
+    In in = new In(filename);
     int num = in.readInt();
     double radius = in.readDouble();
     return radius;
   }
 
   // method 2: return an array of planets
-  public static Body[] readBodies(String fn) {
-    In in = new In(fn);
+  public static Body[] readBodies(String filename) {
+    In in = new In(filename);
     /** 
      *  Create an empty array list first called planets 
      *  beacuase we have not known the number of planets yet
@@ -50,9 +50,65 @@ public class NBody {
      *  when using Array, must assign the size!
     */
     Body[] planetsArray = new Body[planets.size()];
-    System.out.println(planets.size());
     planets.toArray(planetsArray);
 
     return planetsArray;
+  }
+
+    /** 
+     * main function arguments: T, dt, filename
+    */
+  public static void main(String[] args) {
+    /** 
+     * convert String to Double: 
+     * double .. = Double.parseDouble(..)
+    */
+    double T = Double.parseDouble(args[0]);
+    double dt = Double.parseDouble(args[1]);
+    String filename = args[2];
+
+    double radius = readRadius(filename);
+    Body[] planetsArray = readBodies(filename);
+
+    // Create the animation
+    StdDraw.enableDoubleBuffering();
+    StdDraw.setScale(-radius, radius);
+    StdDraw.clear();
+
+    // Drawing more than one body
+    for (int t = 0; t <= T; t += dt) {
+      double[] xForces = new double[planetsArray.length];
+      double[] yForces = new double[planetsArray.length];
+
+      for (int m = 0; m < planetsArray.length; m++) {
+          xForces[m] = planetsArray[m].calcNetForceExertedByX(planetsArray);
+          yForces[m] = planetsArray[m].calcNetForceExertedByY(planetsArray);
+      }
+
+      for (int m = 0; m < planetsArray.length; m++) {
+        planetsArray[m].update(dt, xForces[m], yForces[m]);
+      }
+
+      // Draw the background first
+      StdDraw.picture(0, 0, "images/starfield.jpg");
+
+      // Draw all of the planets
+      for (int n = 0; n < planetsArray.length; n++) {
+        planetsArray[n].draw();
+      }
+
+      StdDraw.show();
+      StdDraw.pause(10);
+    }
+
+    // print the universe
+    StdOut.printf("%d\n", planetsArray.length);
+    StdOut.printf("%.2e\n", radius);
+    for (int i = 0; i < planetsArray.length; i++) {
+        StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+          planetsArray[i].xxPos, planetsArray[i].yyPos, planetsArray[i].xxVel,
+          planetsArray[i].yyVel, planetsArray[i].mass, planetsArray[i].imgFileName);   
+    }
+
   }
 }

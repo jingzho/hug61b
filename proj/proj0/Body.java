@@ -135,5 +135,14 @@ public class Body {
       this.xxPos += dt * this.xxVel;
       this.yyPos += dt * this.yyVel; 
   }
+
+    /** 
+     * Drawing One Body:
+     * Uses the StdDraw API mentioned above to draw the Planet’s image at the Planet’s position.
+    */
+    public void draw() {
+      String imgpath = "./images/" + this.imgFileName;
+      StdDraw.picture(this.xxPos, this.yyPos, imgpath);
+  }
   
 }
