@@ -9,7 +9,7 @@
     the problem.*/
     
 public class Government {
-	private static int treasury = 5;
+	private int treasury = 5;
 
 	private void spend() {
 		treasury -= 1;
@@ -20,7 +20,7 @@ public class Government {
 	}
 
 	public void report() {
-		System.out.println(treasury);
+		System.out.println(treasury);  // should be 5
 	}
 
 	public static Government greaterTreasury(Government a, Government b) {
@@ -36,7 +36,9 @@ public class Government {
 		}
 	}
 
-  /** must be delete because spend() is not a static method */
+  /**
+	 * static class cannot use non-static methods: spend(), tax(), report()
+	*/ 
   // public static class King {
 	public class King {
 		public void doStuff() {
@@ -58,9 +60,11 @@ public class Government {
 		}
 	}
 
-  /** must be deleled because treasury is non-static variable */
+  /**
+	 * static class cannot use non-static variable: treasury
+	*/ 
 	// public static class Thief {
-  public class Thief {
+	public class Thief {
 		public void doStuff() {
 			treasury = 0;			
 		}
