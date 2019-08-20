@@ -10,14 +10,17 @@ public class SLList {
 	}
 
 	private IntNode first; 
+	private int size;
 
 	public SLList(int x) {
 			first = new IntNode(x, null);
+			size = 1;
 	}
 
 	/** Adds an item to the front of the list. */
 	public void addFirst(int x) {
 			first = new IntNode(x, first);
+			size += 1;
 	}    
 
 	/** Retrieves the front item from the list. */
@@ -35,20 +38,23 @@ public class SLList {
 		}
 		// add x (IntNode) to the end of SLList
 		L.next = new IntNode(x, null);
+		size += 1;
 
 	}
 
+	/**
 	private static int size(IntNode p) {
-		// reach the end of SLList, return 1
 		while (p.next == null) {
 			return 1;
 		}
 		return 1 + size(p.next);
 	}
+	 */
 
 	/** Returns the number of items in the list using recursion. */
 	public int size() {
-		return size(first);
+		// return size(first);
+		return size;
 	}
 
 	public static void main(String[] args) {
