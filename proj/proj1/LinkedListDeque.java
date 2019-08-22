@@ -109,7 +109,7 @@ public class LinkedListDeque<T> {
         int length = size();
         if (length > index) {
             Node copyNode2 = sentinel;
-            for (int i = 0; i < index + 1; i++) {
+            for (int i = 0; i < index; i++) {
                 copyNode2 = copyNode2.next;
             }
             return copyNode2.item;
@@ -120,14 +120,23 @@ public class LinkedListDeque<T> {
 
     /**
      * recursion
+     * index-1 and .next until find the target index and return value of item
      */
     public T getRecursive(int index) {
         int length = size();
+        Node copyNode3 = sentinel;
         if (length > index) {
-
+            return transverse(copyNode3, index);
         } else {
             return null;
         }
+    }
+
+    public T transverse(Node node, int i) {
+        if (i == 0) {
+            return node.item;
+        }
+        return transverse(node.next, i - 1);
     }
 
     public static void main(String[] args) {
@@ -143,7 +152,7 @@ public class LinkedListDeque<T> {
         LLD.removeFirst();
         LLD.removeLast();
         LLD.printDeque();
-        System.out.println(LLD.get(0));
-        System.out.println(LLD.getRecursive(1));
+        System.out.println(LLD.get(1));
+        System.out.println(LLD.getRecursive(2));
     }
 }
