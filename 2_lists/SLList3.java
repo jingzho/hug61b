@@ -54,7 +54,7 @@ public class SLList3 {
 
     /** Crashes when you call addLast on an empty SLList. Fix it. */
     public static void main(String[] args) {
-        SLList2 x = new SLList2();
+        SLList3 x = new SLList3();
         x.addLast(5);
         x.addLast(10);
         System.out.println(x.size());
