@@ -1,4 +1,4 @@
-import java.util.OptionalInt;
+/**  Project 1a: Linked List Deque. */
 
 public class LinkedListDeque<T> {
     public class Node {
