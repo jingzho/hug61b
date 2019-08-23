@@ -41,13 +41,23 @@ public class Array{
    * For this question assume that all elements of the array are positive. 
    */
   public static int[] replicate(int[] arr) {
-    
+    int position = 0;
+    for (i = 0; i < arr.length; i += 1) {
+      replicaTimes = arr[i];
+      for (j = 0; j < replicaTimes; j += 1) {
+        int[] replicaArr = new int[];
+        replicaArr[position + j] = replicaTimes;
+        position = replicaTimes;
+      }
+    }
+    return replicaArr;
   }
 
   public static void main(String[] args) {
-    int[] x = new int[]{1, 2, 3, 4, 5};
-    x = insert(x, 10, 3);
-    x = insert(x, 100, 10);
+    int[] x = new int[]{1, 2, 4, 5};
+    x = insert(x, 3, 3);
+    x = insert(x, 6, 10);
     reverse(x);
+    replicate(x);
   }
 }
