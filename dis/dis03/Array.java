@@ -1,4 +1,4 @@
-public class Array{
+public class Array {
 
   /** 
    * inserts an int item into an int[] arr at the given position
@@ -28,9 +28,10 @@ public class Array{
    * e.g. calling reverse on an array [1, 2, 3] should change the array to be [3, 2, 1]
    */
   public static void reverse(int[] arr) {
-    for (int i = 0; i < arr.length / 2; i += 1) {
+    int length = arr.length;
+    for (int i = 0; i < length / 2; i += 1) {
       int temp = arr[i];
-      arr[i] = arr[arr.length - 1 - i];
+      arr[i] = arr[length - 1 - i];
       arr[length - 1 - i] = temp;
     }
   }
@@ -41,13 +42,17 @@ public class Array{
    * For this question assume that all elements of the array are positive. 
    */
   public static int[] replicate(int[] arr) {
+    /** create a new array and use loop to count its total size */
+    int total = 0;
+    for (int item : arr) {
+      total += item;
+    }
+    int[] replicaArr = new int[total];
     int position = 0;
-    for (i = 0; i < arr.length; i += 1) {
-      replicaTimes = arr[i];
-      for (j = 0; j < replicaTimes; j += 1) {
-        int[] replicaArr = new int[];
-        replicaArr[position + j] = replicaTimes;
-        position = replicaTimes;
+    for (int item : arr) {
+      for (int i = 0; i < item; i++) {
+        replicaArr[position] = item;
+        position += 1;
       }
     }
     return replicaArr;
