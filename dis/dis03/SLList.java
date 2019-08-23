@@ -52,6 +52,18 @@
     }
   }
 
+  public void reverseRecursive() {
+    first = reverseHelper(first);
+  }
+
+  private Intnode reverseHelper() {
+    if (first == null || first.next == null) {
+      return first;
+    } else {
+
+    }
+  }
+
   public static void main(String[] args) {
     SLList a = new SLList();
     a.insert(0, 2); 
@@ -60,5 +72,6 @@
     a.insert(0, 2); 
     a.insert(0, 10);
     a.reverse();
+    a.reverseRecursive();
   }
 }
