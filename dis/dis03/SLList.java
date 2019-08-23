@@ -1,4 +1,4 @@
- public class SLList {
+public class SLList {
   private class IntNode {
     public int item;
     public IntNode next;
@@ -53,24 +53,29 @@
   }
 
   public void reverseRecursive() {
+    // let first point to the last node of the list
     first = reverseHelper(first);
   }
 
-  private Intnode reverseHelper() {
-    if (first == null || first.next == null) {
-      return first;
-    } else {
-
+  private IntNode reverseHelper(IntNode currentNode) {
+    if (currentNode == null || currentNode.next == null) {
+      return currentNode;
     }
+    // save the last node for the later return
+    IntNode lastNode = reverseHelper(currentNode.next);
+    // let the pointer of last node point to current node to reverse
+    currentNode.next.next = currentNode;
+    // let the pointer of current node to null
+    currentNode.next = null;
+    return lastNode;
   }
 
   public static void main(String[] args) {
     SLList a = new SLList();
-    a.insert(0, 2); 
-    a.addFirst(3);
-    a.addFirst(4);
-    a.insert(0, 2); 
-    a.insert(0, 10);
+    a.insert(3, 2); 
+    a.addFirst(2);
+    a.addFirst(1);
+    a.insert(4, 10);
     a.reverse();
     a.reverseRecursive();
   }
